@@ -45,7 +45,8 @@ function curl.get(uri, opts)
     -- INFO :Add arguments
     if query then
         for k, v in pairs(query) do
-            add(('--data-urlencode %q=%q'):format(k, v))
+            local temp = k .. '=' .. v
+            add(('--data-urlencode %q'):format(temp))
         end
     end
 

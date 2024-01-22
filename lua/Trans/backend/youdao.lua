@@ -25,7 +25,8 @@ local M = {
 ---@param data TransData
 ---@return YoudaoQuery
 function M.get_query(data)
-    local str     = data.str
+    local str     = string.gsub(data.str,'\9','')
+    str           = string.gsub(data.str,'`','\'')
     local app_id  = M.app_id
     local salt    = M.salt
     local curtime = tostring(os.time())
