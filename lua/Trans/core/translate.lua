@@ -24,11 +24,10 @@ local function do_query(data, backend)
     local function handle(output)
         local status, body = pcall(vim.json.decode, output.body)
         if not status or not body then
-            if not Trans.conf.debug then
+            if Trans.conf.debug then
                 backend.debug(body)
                 data.trace[name] = output
             end
-
             data.result[name] = false
             return
         end

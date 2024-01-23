@@ -14,6 +14,7 @@ local curl = {}
 ---@field callback fun(result: RequestResult)
 
 
+
 ---@async
 ---Send a GET request use curl
 ---@param uri string uri for request
@@ -35,6 +36,16 @@ function curl.get(uri, opts)
         cmd[size] = value
     end
 
+    -- local function lua2pwsh(str)
+    --     local replacements = {
+    --         ['`'] = '``',
+    --         ['\\\"'] = '`"',
+    --         ['%$']='`%$'
+    --         -- 添加其他需要转义的字符
+    --     }
+    --     return str:gsub('.', replacements)
+    -- end
+
     -- INFO :Add headers
     if headers then
         for k, v in pairs(headers) do
@@ -46,9 +57,27 @@ function curl.get(uri, opts)
     if query then
         for k, v in pairs(query) do
             local temp = k .. '=' .. v
-            add(('--data-urlencode %q'):format(temp))
+            temp=('--data-urlencode %q'):format(temp)
+
+            -- if k=='q' then
+            --     print("1temp: "..temp)
+            -- end
+
+            -- temp=lua2pwsh(temp)
+            temp=temp:gsub('`','``')
+            temp=temp:gsub('\\\"','`"')
+            temp=temp:gsub('\\\\','\\')
+            temp=temp:gsub('%$','`%$')
+
+
+            -- if k=='q' then
+            --     print("2temp: "..temp)
+            -- end
+
+            add(temp)
         end
     end
+
 
     -- INFO :Store output to file
     if output then
@@ -72,7 +101,7 @@ function curl.get(uri, opts)
         }
     end
 
-    -- vim.print(table.concat(cmd, ' '))
+    -- vim.print("==============: "..table.concat(cmd, ' '))
     vim.fn.jobstart(table.concat(cmd, ' '), {
         stdin = 'null',
         on_stdout = on_stdout,

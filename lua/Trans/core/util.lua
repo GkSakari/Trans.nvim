@@ -247,6 +247,13 @@ function M.list_fields(list, field)
     return ret
 end
 
+--- @return any # given arguments.
+function M.debugPrint(...)
+    if Trans.conf.debug then
+        return -- vim.print(...)
+    end
+end
+
 ---@class Trans
 ---@field util TransUtil
 return M

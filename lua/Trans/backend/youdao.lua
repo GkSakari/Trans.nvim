@@ -21,12 +21,23 @@ local M = {
 ---@field sign string
 
 
+
+-- function escape_string(str)
+--     local replacements = {
+--         -- ['\9'] = '`r',
+--         ['`']='\''
+--         -- 添加其他需要转义的字符
+--     }
+--     return str:gsub('.', replacements)
+-- end
+
 ---Get content for query
 ---@param data TransData
 ---@return YoudaoQuery
 function M.get_query(data)
-    local str     = string.gsub(data.str,'\9','')
-    str           = string.gsub(data.str,'`','\'')
+    local str     = data.str
+    -- str     = escape_string(str)
+    -- vim.print("str:"..str)
     local app_id  = M.app_id
     local salt    = M.salt
     local curtime = tostring(os.time())
