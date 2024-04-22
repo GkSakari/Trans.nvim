@@ -129,7 +129,7 @@ Packer.nvim ~
         requires = { 'kkharji/sqlite.lua',  },
         config = function()
             require("Trans").setup {} -- 启动Trans
-            vim.keymap.set({"n", 'x'}, "mm", '<Cmd>Translate<CR>', { desc = ' Translate' }) -- 自动判断virtual 还是 normal 模式
+            vim.keymap.set({"n", 'x'}, "mm", '<Cmd>Translate<CR>', { desc = '󰊿 Translate' }) -- 自动判断virtual 还是 normal 模式
             vim.keymap.set({'n', 'x'}, 'mk', '<Cmd>TransPlay<CR>', {desc = ' 自动发音'}) -- 自动发音选中或者光标下的单词
         end
     }
@@ -142,11 +142,11 @@ Lazy.nvim ~
             "JuanZoran/Trans.nvim",
             keys = {
             -- 可以换成其他你想映射的键
-                { 'mm', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = ' Translate' },
+                { 'mm', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = '󰊿 Translate' },
                 { 'mk', mode = { 'n', 'x' }, '<Cmd>TransPlay<CR>', desc = ' 自动发音' },
     
                 -- 目前这个功能的视窗还没有做好，可以在配置里将view.i改成hover
-                { 'mi', '<Cmd>TranslateInput<CR>', desc = ' Translate From Input' },
+                { 'mi', '<Cmd>TranslateInput<CR>', desc = '󰊿 Translate From Input' },
             },
             dependencies = { 'kkharji/sqlite.lua', },
             opts = {
@@ -301,7 +301,7 @@ Festival配置(仅针对linux用户) ~
                     -- or use emoji
                     list        = '●', -- ● | ○ | ◉ | ◯ | ◇ | ◆ | ▪ | ▫ | ⬤ | 🟢 | 🟡 | 🟣 | 🟤 | 🟦 | 🟨 | 🟧 | 🟥 | 🟪 | 🟫 | 🟩 | 🟠 | 🟦 | 🟨 | 🟧 | 🟥 | 🟪 | 🟫 | 🟩 | 🟠
                     star        = '', -- ⭐ | ✴ | ✳ | ✲ | ✱ | ✰ | ★ | ☆ | 🌟 | 🌠 | 🌙 | 🌛 | 🌜 | 🌟 | 🌠 | 🌌 | 🌙 |
-                    notfound    = ' ', --❔ | ❓ | ❗ | ❕|
+                    notfound    = '󰆆 ', --❔ | ❓ | ❗ | ❕|
                     yes         = '✔', -- ✅ | ✔️ | ☑
                     no          = '', -- ❌ | ❎ | ✖ | ✘ | ✗ |
                     cell        = '■', -- ■  | □ | ▇ | ▏ ▎ ▍ ▌ ▋ ▊ ▉ █

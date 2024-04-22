@@ -5,11 +5,11 @@ local Trans = require 'Trans'
 local command = api.nvim_create_user_command
 
 command('Translate', function() Trans.translate() end,
-    { desc = '  Translate cursor word' })
+    { desc = '󰊿  Translate cursor word' })
 
 
 command('TranslateInput', function() Trans.translate { mode = 'i' } end,
-    { desc = '  Translate input word' })
+    { desc = '󰊿  Translate input word' })
 
 command('TransPlay', function()
     local util = Trans.util

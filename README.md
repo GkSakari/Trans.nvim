@@ -139,10 +139,10 @@ use {
         build = function () require'Trans'.install() end,
         keys = {
         -- 可以换成其他你想映射的键
-            { 'mm', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = ' Translate' },
+            { 'mm', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = '󰊿 Translate' },
             { 'mk', mode = { 'n', 'x' }, '<Cmd>TransPlay<CR>', desc = ' Auto Play' },
             -- 目前这个功能的视窗还没有做好，可以在配置里将view.i改成hover
-            { 'mi', '<Cmd>TranslateInput<CR>', desc = ' Translate From Input' },
+            { 'mi', '<Cmd>TranslateInput<CR>', desc = '󰊿 Translate From Input' },
         },
         dependencies = { 'kkharji/sqlite.lua', },
         opts = {
@@ -259,7 +259,7 @@ default_conf = {
             border    = 'rounded',
             title     = vim.fn.has 'nvim-0.9' == 1 and {
                     { '',       'TransTitleRound' },
-                    { ' Trans', 'TransTitle' },
+                    { '󰊿 Trans', 'TransTitle' },
                     { '',       'TransTitleRound' },
                 } or nil, -- need nvim-0.9+
             auto_play = true,
@@ -326,7 +326,7 @@ default_conf = {
                 -- or use emoji
                 list        = '●', -- ● | ○ | ◉ | ◯ | ◇ | ◆ | ▪ | ▫ | ⬤ | 🟢 | 🟡 | 🟣 | 🟤 | 🟠| 🟦 | 🟨 | 🟧 | 🟥 | 🟪 | 🟫 | 🟩 | 🟦
                 star        = '', -- ⭐ | ✴ | ✳ | ✲ | ✱ | ✰ | ★ | ☆ | 🌟 | 🌠 | 🌙 | 🌛 | 🌜 | 🌟 | 🌠 | 🌌 | 🌙 |
-                notfound    = ' ', --❔ | ❓ | ❗ | ❕|
+                notfound    = '󰆆 ', --❔ | ❓ | ❗ | ❕|
                 yes         = '✔', -- ✅ | ✔️ | ☑
                 no          = '', -- ❌ | ❎ | ✖ | ✘ | ✗ |
                 cell        = '■', -- ■  | □ | ▇ | ▏ ▎ ▍ ▌ ▋ ▊ ▉
