@@ -23,14 +23,13 @@ end, { desc = ' Auto play' })
 string.width = api.nvim_strwidth
 
 local system = Trans.system
-local f =
-    (vim.fn.has 'wsl' == 1 or system == 'win') and
-    'powershell.exe -Command "Add-Type -AssemblyName System.speech;(New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(\\\"%s\\\")"' or
-    system == 'mac' and 'say %q' or
-    system == 'termux' and 'termux-tts-speak %q' or
-    system == 'linux' and 'echo %q | festival --tts' or
-    error 'Unsupported system'
-
+local f = vim.fn.has("wsl") == 1
+		and 'powershell.exe -NoProfile -Command "Add-Type -AssemblyName System.speech;(New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(\\"%s\\")"'
+	or system == "win" and 'powershell.exe -NoProfile -Command "Add-Type -AssemblyName System.speech;(New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(`"%s`")"'
+	or system == "mac" and "say %q"
+	or system == "termux" and "termux-tts-speak %q"
+	or system == "linux" and "echo %q | festival --tts"
+	or error("Unsupported system")
 
 string.play = function(self)
     ---@diagnostic disable-next-line: param-type-mismatch
