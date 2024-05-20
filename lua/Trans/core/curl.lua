@@ -6,14 +6,11 @@ local curl = {}
 ---@field exit integer exit code
 ---@field error string error message from stderr
 
-
 ---@class TransCurlOptions
 ---@field query table<string, string> query arguments
 ---@field output string output file path
 ---@field headers table<string, string> headers
 ---@field callback fun(result: RequestResult)
-
-
 
 ---@async
 ---Send a GET request use curl
@@ -36,16 +33,6 @@ function curl.get(uri, opts)
         cmd[size] = value
     end
 
-    -- local function lua2pwsh(str)
-    --     local replacements = {
-    --         ['`'] = '``',
-    --         ['\\\"'] = '`"',
-    --         ['%$']='`%$'
-    --         -- 添加其他需要转义的字符
-    --     }
-    --     return str:gsub('.', replacements)
-    -- end
-
     -- INFO :Add headers
     if headers then
         for k, v in pairs(headers) do
@@ -59,20 +46,13 @@ function curl.get(uri, opts)
             local temp = k .. '=' .. v
             temp=('--data-urlencode %q'):format(temp)
 
-            -- if k=='q' then
-            --     print("1temp: "..temp)
-            -- end
-
-            -- temp=lua2pwsh(temp)
-            temp=temp:gsub('`','``')
-            temp=temp:gsub('\\\"','`"')
-            temp=temp:gsub('\\\\','\\')
-            temp=temp:gsub('%$','`%$')
-
-
-            -- if k=='q' then
-            --     print("2temp: "..temp)
-            -- end
+			if vim.loop.os_uname().sysname == "Windows_NT" then
+                temp=temp:gsub('`','``')
+                temp=temp:gsub('\\\"','`"')
+                temp=temp:gsub('\\\\','\\')
+                temp=temp:gsub('%$','`%$')
+            end
+            temp=temp:gsub('\\9','\t')
 
             add(temp)
         end
@@ -113,7 +93,6 @@ end
 -- curl.post = function ()
 --
 -- end
-
 
 ---@class Trans
 ---@field curl TransCurl
